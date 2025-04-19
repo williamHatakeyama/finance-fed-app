@@ -8,7 +8,7 @@ import { ADR } from '../../models/adr.model';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './adr-dashboard.component.html',
-  styleUrls: ['./adr-dashboard.component.scss']
+  styles: []
 })
 export class AdrDashboardComponent implements OnInit {
   adrs: ADR[] = [];
