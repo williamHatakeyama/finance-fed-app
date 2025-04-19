@@ -1,0 +1,70 @@
+<div class="dashboard-container">
+  <h1>Dashboard de ADRs Brasileiras</h1>
+  
+  <!-- Cards com os totais -->
+  <div class="totals-container">
+    <!-- Card com a soma total de alterações -->
+    <div class="total-card">
+      <h2>Alteração Total</h2>
+      <div class="total-value" [ngClass]="totalChange >= 0 ? 'positive' : 'negative'">
+        {{ totalChange | number:'1.2-4' }} USD
+      </div>
+    </div>
+
+    <!-- Card com a soma total de porcentagens de alteração -->
+    <div class="total-card">
+      <h2>% Alteração Total</h2>
+      <div class="total-value" [ngClass]="totalChangePercent >= 0 ? 'positive' : 'negative'">
+        {{ totalChangePercent | number:'1.2-2' }}%
+      </div>
+    </div>
+  </div>
+
+  <!-- Mensagem de carregamento -->
+  <div *ngIf="loading" class="loading">
+    Carregando dados das ADRs brasileiras...
+  </div>
+
+  <!-- Mensagem de erro -->
+  <div *ngIf="error" class="error">
+    {{ error }}
+  </div>
+
+  <!-- Tabela de ADRs -->
+  <div *ngIf="!loading && !error" class="table-container">
+    <table class="adr-table">
+      <thead>
+        <tr>
+          <th>Símbolo</th>
+          <th>Nome</th>
+          <th>Preço (USD)</th>
+          <th>Alteração</th>
+          <th>Alteração (%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let adr of adrs">
+          <td>{{ adr.symbol }}</td>
+          <td>{{ adr.name }}</td>
+          <td>{{ adr.price | number:'1.2-2' }}</td>
+          <td [ngClass]="adr.change >= 0 ? 'positive' : 'negative'">
+            {{ adr.change | number:'1.2-4' }}
+          </td>
+          <td [ngClass]="adr.changePercent >= 0 ? 'positive' : 'negative'">
+            {{ adr.changePercent | number:'1.2-2' }}%
+          </td>
+        </tr>
+        <!-- Linha de total -->
+        <tr class="total-row">
+          <td colspan="3" class="total-label">Total:</td>
+          <td [ngClass]="totalChange >= 0 ? 'positive' : 'negative'">
+            {{ totalChange | number:'1.2-4' }}
+          </td>
+          <td [ngClass]="totalChangePercent >= 0 ? 'positive' : 'negative'">
+            {{ totalChangePercent | number:'1.2-2' }}%
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> 
