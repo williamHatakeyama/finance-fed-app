@@ -12,9 +12,9 @@ import { ADR } from '../../models/adr.model';
 })
 export class AdrDashboardComponent implements OnInit {
   adrs: ADR[] = [];
-  totalChange: number = 0;
-  totalChangePercent: number = 0;
-  loading: boolean = true;
+  totalChange = 0;
+  totalChangePercent = 0;
+  loading = true;
   error: string | null = null;
 
   constructor(private adrService: AdrService) {}
